@@ -1,6 +1,6 @@
 import dearpygui.dearpygui as dpg
 import sqlite3
-from sys import exit
+import sys
 import webbrowser
 
 # Setup our context and viewport
@@ -81,7 +81,7 @@ with dpg.file_dialog(directory_selector=False, show=False, callback=show_databas
     dpg.add_file_extension("Databases (*.sqlite *.sqlite3 *.db){.sqlite,.sqlite3,.db}", color=(0, 255, 255, 255))
 
 # About Window
-with dpg.window(label="About", tag="About", show=False, width=400, height=490):
+with dpg.window(label="About", tag="About", show=False, width=400, height=490, no_collapse=True):
     b2 = dpg.add_text("SQLite Viewer 1.0.0")
     dpg.add_text("Made by grqphical07")
     dpg.add_spacer()
@@ -115,11 +115,10 @@ with dpg.window(label="Example Window", tag="Primary Window"):
     with dpg.menu_bar():
         with dpg.menu(label="File"):
             dpg.add_menu_item(label="Select File", callback=lambda: dpg.show_item("file_dialog_id"))
-            dpg.add_menu_item(label="Exit", shortcut="Alt+F4", callback=lambda: exit())
 
         with dpg.menu(label="Help"):
             dpg.add_menu_item(label="About", callback=lambda: dpg.configure_item("About", show=True))
-            dpg.add_menu_item(label="Github")
+            dpg.add_menu_item(label="Github", callback=lambda: webbrowser.open("https://github.com/grqphical07/SQLite-Viewer"))
     
     b2 = dpg.add_text("SQLite Viewer")
     dpg.add_spacer()
