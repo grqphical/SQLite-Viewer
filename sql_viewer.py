@@ -5,7 +5,13 @@ import webbrowser
 
 # Setup our context and viewport
 dpg.create_context()
-dpg.create_viewport(title='Database Viewer', width=800, height=600)
+dpg.create_viewport(title='Database Viewer', width=800, height=600, small_icon="resources/db_icon.ico", large_icon="resources/db_icon.ico")
+
+# Load the logo as a texture
+logo_width, logo_height, logo_channels, logo = dpg.load_image("resources/db_icon.png")
+
+with dpg.texture_registry():
+    dpg.add_static_texture(width=logo_width, height=logo_height, default_value=logo, tag="logo")
 
 # Initalize global variables used to interact with the database
 db_file = ""
@@ -82,6 +88,7 @@ with dpg.file_dialog(directory_selector=False, show=False, callback=show_databas
 
 # About Window
 with dpg.window(label="About", tag="About", show=False, width=400, height=490, no_collapse=True):
+    dpg.add_image("logo", width=64, height=64)
     b2 = dpg.add_text("SQLite Viewer 1.0.0")
     dpg.add_text("Made by grqphical07")
     dpg.add_spacer()
@@ -112,6 +119,7 @@ SOFTWARE.""", multiline=True, readonly=True, width=390, height=390)
     dpg.bind_item_font(b3, header_font)
 
 with dpg.window(label="Example Window", tag="Primary Window"):
+    # Create our menu bar
     with dpg.menu_bar():
         with dpg.menu(label="File"):
             dpg.add_menu_item(label="Select File", callback=lambda: dpg.show_item("file_dialog_id"))
@@ -119,21 +127,24 @@ with dpg.window(label="Example Window", tag="Primary Window"):
         with dpg.menu(label="Help"):
             dpg.add_menu_item(label="About", callback=lambda: dpg.configure_item("About", show=True))
             dpg.add_menu_item(label="Github", callback=lambda: webbrowser.open("https://github.com/grqphical07/SQLite-Viewer"))
-    
+    # Create the main ui
     b2 = dpg.add_text("SQLite Viewer")
     dpg.add_spacer()
     dpg.add_button(label="Select Database", callback=lambda: dpg.show_item("file_dialog_id"), tag="database_file")
     
     dpg.add_tab_bar(tag="tab_bar", callback=populate_db)
+
+    # Load the fonts
     dpg.bind_font(default_font)
     dpg.bind_item_font(b2, title_font)
 
+# Added rounded corners to all of the elements
 with dpg.theme() as global_theme:
 
     with dpg.theme_component(dpg.mvAll):
         dpg.add_theme_style(dpg.mvStyleVar_FrameRounding, 4)
 
-
+# Load the theme
 dpg.bind_theme(global_theme)
 
 
