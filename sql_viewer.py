@@ -1,6 +1,5 @@
 import dearpygui.dearpygui as dpg
 import sqlite3
-import sys
 import webbrowser
 
 # Setup our context and viewport
