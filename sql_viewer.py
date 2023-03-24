@@ -5,7 +5,7 @@ import webbrowser
 
 # Setup our context and viewport
 dpg.create_context()
-dpg.create_viewport(title='Database Viewer', width=800, height=600, small_icon="resources/db_icon.ico", large_icon="resources/db_icon.ico")
+dpg.create_viewport(title='Database Viewer', width=1280, height=720, small_icon="resources/db_icon.ico", large_icon="resources/db_icon.ico")
 
 # Load the logo as a texture
 logo_width, logo_height, logo_channels, logo = dpg.load_image("resources/db_icon.png")
@@ -87,7 +87,7 @@ with dpg.file_dialog(directory_selector=False, show=False, callback=show_databas
     dpg.add_file_extension("Databases (*.sqlite *.sqlite3 *.db){.sqlite,.sqlite3,.db}", color=(0, 255, 255, 255))
 
 # About Window
-with dpg.window(label="About", tag="About", show=False, width=400, height=490, no_collapse=True):
+with dpg.window(label="About", tag="About", show=False, width=600, height=490, no_collapse=True):
     dpg.add_image("logo", width=64, height=64)
     b2 = dpg.add_text("SQLite Viewer 1.0.0")
     dpg.add_text("Made by grqphical07")
@@ -112,7 +112,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.""", multiline=True, readonly=True, width=390, height=390)
+SOFTWARE.""", multiline=True, readonly=True, width=590, height=390)
 
     dpg.bind_font(default_font)
     dpg.bind_item_font(b2, title_font)
@@ -143,6 +143,21 @@ with dpg.theme() as global_theme:
 
     with dpg.theme_component(dpg.mvAll):
         dpg.add_theme_style(dpg.mvStyleVar_FrameRounding, 4)
+        dpg.add_theme_style(dpg.mvStyleVar_WindowTitleAlign, 0.5, 0.5)
+        dpg.add_theme_color(dpg.mvThemeCol_WindowBg, (34, 40, 49, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_Text, (238, 238, 238, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_ChildBg, (28, 33, 41, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_TitleBgActive, (214, 151, 0, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_MenuBarBg, (27, 32, 39, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_CheckMark, (214, 151, 0, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_SliderGrab, (214, 151, 0, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_SliderGrabActive, (214, 151, 0, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_Button, (26, 31, 38, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_ButtonHovered, (43, 53, 65, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_TabActive, (214, 151, 0, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_TabHovered, (189, 133, 0, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_TableHeaderBg, (30, 36, 44, 255))
+        dpg.add_theme_color(dpg.mvThemeCol_HeaderHovered, (48, 57, 70, 255))
 
 # Load the theme
 dpg.bind_theme(global_theme)
